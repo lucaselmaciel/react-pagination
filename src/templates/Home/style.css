@@ -12,21 +12,10 @@
   gap: 20px;
 }
 
-.post{
-  background: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: transform 100ms ease-in-out;
+.button-container{
+  min-height: 100px;
 }
 
-.post:hover{
-  transform: scale(1.05);
-  cursor: move;
-}
-
-.post img{
-  max-width: 100%;
-}
-
-.post-content{
-  padding: 30px;
+.searchContainer{
+  margin-bottom: 15px;
 }

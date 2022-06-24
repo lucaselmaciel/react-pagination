@@ -4,6 +4,7 @@ import { loadPosts } from '../../utils/load-posts'
 import React from 'react';
 import { PostCard } from '../../components/PostCard';
 import { Button } from '../../components/Button/index'
+import { TextInput } from '../../components/TextInput/index'
 
 class Home extends React.Component {
   
@@ -11,10 +12,18 @@ class Home extends React.Component {
     posts: [],
     allPosts:[],
     page:0,
-    postsPerPage:2
+    postsPerPage:3,
+    searchValue: ''
   };
   
   timeoutclear = null;
+
+  handleSearch = (e) => {
+    const { value } = e.target;
+    this.setState({ 
+      searchValue:value
+    })
+  }
 
   componentDidMount (){
     this.loadPosts();
@@ -44,21 +53,37 @@ class Home extends React.Component {
   }
 
   render(){
-    const { posts } = this.state;
+    const { posts, searchValue, allPosts } = this.state;
+
+    const filteredPosts = !!searchValue ? 
+      allPosts.filter(post => {
+        return post.title.toLowerCase().includes(searchValue.toLowerCase())
+      })
+     : posts
 
     return (
       <section className="container">
+        <div className="search-container">
+          <TextInput 
+          handleSearch={this.handleSearch} 
+          searchValue={searchValue} />
+        </div>
+
+        <br /><br /><br />
         <div className="posts">
-            {posts.map(post=>
+            {filteredPosts.map(post=>
               <PostCard post={post} key={post.id}/>
               )            
             }
         </div>
-        <Button 
-          text='Load More Posts'
-          onClick={this.loadMorePosts}
-          >
-        </Button>
+        <div className="button-container">
+          <Button 
+            text='Load More Posts'
+            onClick={this.loadMorePosts}
+            disabled={false}
+            >
+          </Button>
+        </div>
       </section>
     );
   }

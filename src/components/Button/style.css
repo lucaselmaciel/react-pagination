@@ -1,11 +1,17 @@
 .show-more{
-    padding: 20px;
-    background-color: rgb(184, 184, 184);
-    border-radius: 25px;
-    margin-top: 15px;
-    position: relative;
-    margin-left: 45%;
-    display: flex;
-    justify-content: center;
+    border: none;
+    width: 100%;
+    background-color: darkblue;
+    color: white;
+    /* margin-left: 45%; */
+    /* display: flex; */
+    /* justify-content: center; */
     align-items: center;
+    padding: 15px 30px;
+    margin-top: 15px;;
+}
+
+.show-more:disabled{
+    background-color: #888;
+    cursor: not-allowed;
 }
